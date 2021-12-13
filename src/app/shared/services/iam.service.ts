@@ -94,24 +94,30 @@ export class IamService {
       } = await this.initSignerService(providerType);
       this.signerService = signerService;
       this.messagingService = messagingService;
-      if (initCacheServer) {
-        const {
-          domainsService,
-          stakingPoolService,
-          assetsService,
-          connectToDidRegistry,
-          cacheClient
-        } = await connectToCacheServer();
-        this.domainsService = domainsService;
-        this.stakingService = stakingPoolService;
-        this.assetsService = assetsService;
-        this.cacheClient = cacheClient;
+
+      this.stakingService = await StakingFactoryService.create(signerService, {} as any);
+
         if (createDocument) {
-          const {didRegistry, claimsService} = await connectToDidRegistry();
-          this.didRegistry = didRegistry;
-          this.claimsService = claimsService;
+          this.didRegistry = await DidRegistry.connect(signerService, null, null, 'https://ipfs.infura.io:5001/api/v0/');
         }
-      }
+      // if (initCacheServer) {
+      //   const {
+      //     domainsService,
+      //     stakingPoolService,
+      //     assetsService,
+      //     connectToDidRegistry,
+      //     cacheClient
+      //   } = await connectToCacheServer();
+      //   this.domainsService = domainsService;
+      //   this.stakingService = stakingPoolService;
+      //   this.assetsService = assetsService;
+      //   this.cacheClient = cacheClient;
+      //   if (createDocument) {
+      //     const {didRegistry, claimsService} = await connectToDidRegistry();
+      //     this.didRegistry = didRegistry;
+      //     this.claimsService = claimsService;
+      //   }
+      // }
     } catch (e) {
       console.error(e);
       return {
