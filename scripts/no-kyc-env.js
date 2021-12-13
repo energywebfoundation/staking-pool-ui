@@ -8,8 +8,9 @@ fs.readFile(envConfig, 'utf8', function (err, data) {
     const result = data
         .replace('cacheServerUrl = \'https://identitycache.energyweb.org/v1\'', 'cacheServerUrl = \'https://identitycache.energyweb.org/v1\'')
         .replace('natsServerUrl = \'https://identityevents.energyweb.org/\'', 'natsServerUrl = \'https://identityevents.energyweb.org/\'')
-        .replace('stakingPoolFactoryAddress = \'0x630FA5B60cF5A85321cC9E8cc1e6A32f4dF73e8e\'', 'stakingPoolFactoryAddress = \'0x630FA5B60cF5A85321cC9E8cc1e6A32f4dF73e8e\'')
+        .replace('stakingPoolFactoryAddress = \'0x630FA5B60cF5A85321cC9E8cc1e6A32f4dF73e8e\'', 'stakingPoolFactoryAddress = \'0x39Ab11B4786F08cA7ac72D25B5d6276b7FF761B4\'')
         .replace('kmsServerUrl = undefined', 'kmsServerUrl = \'https://kms.energyweb.org/connect/new\'')
+        .replace('checkStakingVerification = true', 'checkStakingVerification = false')
         .replace('window.__env.claimManagerAddress = \'undefined\'', 'window.__env.claimManagerAddress = \'undefined\'');
 
     fs.writeFile(envConfig, result, 'utf8', function (err) {
