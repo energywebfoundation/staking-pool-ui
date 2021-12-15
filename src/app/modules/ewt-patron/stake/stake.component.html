@@ -42,15 +42,13 @@
       </div>
       <div class="mt-1 d-flex justify-content-between payment-details color-grey">
         <div class="info">
-          Estimated daily reward
+          Estimated APY during booster period
         </div>
-        <ng-container *ngIf="ratio$ | async as ratio">
         <div class="text-color"
-             [matTooltip]="ratio + '% per hour compounding yields 21.79% per year.'"
+             matTooltip="0.054% per day compounding yields 21.79% per year."
              matTooltipPosition="below">
-          {{ratio | hourToDailyReward}}%
+          21.79%
         </div>
-        </ng-container>
       </div>
       <div class="mt-1 d-flex justify-content-between payment-details color-grey" *ngIf="stakingPoolBegin$ | async as startDate">
         <div class="info" [matTooltip]="startDate?.beginDate">
